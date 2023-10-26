@@ -1,6 +1,7 @@
 package com.soit23.enterprise;
 
 import com.soit23.enterprise.entity.Faculty;
+import com.soit23.enterprise.service.FacultyService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,43 +15,46 @@ import java.util.List;
 @RequestMapping("/Faculties")
 public class FacultyController {
 
-    //Upload faculty info
-    private List<Faculty> theFaculties;
+    public FacultyService facultyService;
 
-
-    //Mapping for "/list"
-
-    @GetMapping("/list")
-    public String listFaculties(Model theModel){
-
-
-
-        //Add Faculties to the Spring Model
-        theModel.addAttribute("faculties", theFaculties);
-
-        return "list-faculties";
+    public FacultyController (FacultyService theFacultyService) {
+        facultyService = theFacultyService;
     }
 
+        //Upload faculty info
+        //private List<Faculty> theFaculties;
 
 
-    @PostConstruct
-    private void loadData(){
+        //Mapping for "/list"
+        @GetMapping("/list")
+        public String listFaculties(Model theModel){
+            //Retrieve faculties from the Database
+            List<Faculty> theFaculties = facultyService.findAll();
 
-        //Create Faculties
-        Faculty fac1 = new Faculty(1, "Kelly", "Miller", "Assistant-Professor", "Kelly@uc.edu");
-        Faculty fac2 = new Faculty(2, "Robert", "Lee", "Assistant-Educator", "Robert@uc.edu");
-        Faculty fac3 = new Faculty(3, "Laura", "West", "Adjunct-Professor", "Laura@uc.edu");
+            //Add Faculties to the Spring Model
+            theModel.addAttribute("faculties", theFaculties);
+
+            return "list-faculties";
+        }
 
 
-        //Create our lists
-        theFaculties = new ArrayList<>();
+
+        //@PostConstruct
+        //private void loadData(){
+
+            //Create Faculties
+            //Faculty fac1 = new Faculty(1, "Kelly", "Miller", "Assistant-Professor", "Kelly@uc.edu");
+            //Faculty fac2 = new Faculty(2, "Robert", "Lee", "Assistant-Educator", "Robert@uc.edu");
+            //Faculty fac3 = new Faculty(3, "Laura", "West", "Adjunct-Professor", "Laura@uc.edu");
+
+            //Create our lists
+            //theFaculties = new ArrayList<>();
+
+            //Add to our List
+            //theFaculties.add(fac1);
+            //theFaculties.add(fac2);
+            //theFaculties.add(fac3);
+
+        }
 
 
-        //Add to our List
-        theFaculties.add(fac1);
-        theFaculties.add(fac2);
-        theFaculties.add(fac3);
-
-    }
-
-}
