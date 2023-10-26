@@ -1,14 +1,34 @@
-package com.soit23.enterprise.model;
+package com.soit23.enterprise.entity;
+
+
+import jakarta.persistence.*;
+
+import javax.annotation.processing.Generated;
+
+@Entity
+@Table
+
 
 public class Faculty {
 
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "firstName")
     private String firstName;
+
+    @Column(name = "lastName")
     private String lastName;
+
+    @Column(name = "title")
     private String title;
+
+    @Column(name = "email")
     private String email;
 
-
+    //Set the Constructors
     public Faculty(){
     }
 
