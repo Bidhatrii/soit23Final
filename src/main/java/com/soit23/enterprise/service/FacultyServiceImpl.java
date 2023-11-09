@@ -18,6 +18,7 @@ public class FacultyServiceImpl implements FacultyService{
     @Autowired
     public FacultyServiceImpl (FacultyRepository theFacultyRepository){
         facultyRepository = theFacultyRepository;
+
     }
 
 
@@ -25,7 +26,7 @@ public class FacultyServiceImpl implements FacultyService{
 
     @Override
     public List<Faculty> findAll() {
-        return facultyRepository.findAll();
+        return facultyRepository.findAllByOrderByLastNameAsc();
     }
 
     @Override

@@ -1,15 +1,22 @@
 package com.soit23.enterprise.service;
 
+import com.soit23.enterprise.dao.FacultyRepository;
 import com.soit23.enterprise.entity.Faculty;
 
 import java.util.List;
 
 public interface FacultyService {
 
-    public List<Faculty> findAll();
+    public default List<Faculty> findAll(){
+        FacultyRepository facultyRepository = null;
+        return facultyRepository.findAllByOrderByLastNameAsc();
+    }
 
 
-    public Faculty findById(int theId);
+    public default Faculty findById(int theId){
+        FacultyService facultyRepository = null;
+        return facultyRepository.findById(theId).get();
+    }
 
 
 
