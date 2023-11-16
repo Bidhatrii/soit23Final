@@ -7,26 +7,15 @@ import java.util.List;
 
 public interface FacultyService {
 
-    public default List<Faculty> findAll(){
-        FacultyRepository facultyRepository = null;
-        return facultyRepository.findAllByOrderByLastNameAsc();
-    }
+    public List<Faculty> findAll();
 
 
-    public default Faculty findById(int theId){
-        FacultyService facultyRepository = null;
-        return facultyRepository.findById(theId).get();
-    }
-
+    public Faculty findById(int theId);
 
 
     public void save(Faculty theFaculty);
 
 
     public void deleteById(int theId);
-
-
-
-
 
 }
